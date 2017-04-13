@@ -1,0 +1,71 @@
+public function some(){
+        // $test = [][];
+        $test = [
+            [3, 1, 1, 2, 4, 2, 4],
+            [3, 4, 5, 4, 4, 2, 1],
+            [3, 2, 4, 2, 2, 2, 3],
+            [3, 4, 1, 1, 1, 1, 4]
+        ];
+
+        $test2 = [
+            [7, 2, 3, 4],
+            [7, 5, 4, 3],
+            [7, 7, 8, 8]
+        ];
+
+        $t = $this->check($test,3);
+
+    }
+
+    function check($arr, $match){
+        $vert = [];
+        $hor = [];
+        $diagr = [];
+        $diagl = [];
+        for($r = 0; $r < count($arr); $r++){
+            for($c = 0; $c < count($arr[0]); $c++){
+                
+                $curr = $arr[$r][$c];
+
+                $ct = 0; $n = 0;
+                while($r+$n < count($arr)){
+                    $curr == $arr[$r+$n][$c] ? $ct++ : $ct = 0;
+                    if($ct == $match){
+                        array_push($vert, [$r,$c]);
+                    }
+                    $n++;
+                }
+
+                $n = 0; $ct = 0;
+                while($c+$n < count($arr[0])){
+                    $curr == $arr[$r][$c+$n] ? $ct++ : $ct = 0;
+                    if($ct == $match){
+                        array_push($hor, [$r,$c]);
+                    }
+                    $n++;
+                }
+
+                $n = 0; $ct = 0;
+                while($c+$n < count($arr[0]) && $r+$n < count($arr)){
+                    $curr == $arr[$r+$n][$c+$n] ? $ct++ : $ct = 0;
+                    if($ct == $match){
+                        array_push($diagr, [$r,$c]);
+                    }
+                    $n++;
+                }
+
+                $n = 0; $ct = 0;
+                while($r+$n < count($arr) && $c-$n > -1){
+                    $curr == $arr[$r+$n][$c-$n] ? $ct++ : $ct = 0;
+                    if($ct == $match){
+                        array_push($diagl, [$r,$c]);
+                    }
+                    $n++;
+                }
+            }
+        }
+        var_dump($vert);
+        var_dump($hor);
+        var_dump($diagr);
+        var_dump($diagl);
+    }

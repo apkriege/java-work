@@ -1,0 +1,343 @@
+    public function some(){
+        // $test = [][];
+        $test = [
+            [3, 1, 1, 2, 4, 2, 4],
+            [3, 4, 5, 4, 4, 2, 1],
+            [3, 2, 4, 2, 2, 2, 3],
+            [3, 4, 1, 1, 1, 1, 4]
+        ];
+
+        $test2 = [
+            [7, 2, 3, 4],
+            [7, 5, 4, 3],
+            [7, 7, 8, 8]
+        ];
+
+        $dp = $this->checkHor($test,3);
+        $xt = $this->checkVert($test,3);
+        // var_dump($dp);
+        // var_dump($xt);
+        $t = $this->check($test2,2);
+
+    }
+
+    function check($arr, $match){
+        $vert = [];
+        $hor = [];
+        $diagr = [];
+        $diagl = [];
+        for($r = 0; $r < count($arr); $r++){
+            for($c = 0; $c < count($arr[0]); $c++){
+                
+                $curr = $arr[$r][$c];
+
+                $ct = 0; $n = 0;
+                while($r+$n < count($arr)){
+                    $curr == $arr[$r+$n][$c] ? $ct++ : $ct = 0;
+                    if($ct == $match){
+                        array_push($vert, [$r,$c]);
+                    }
+                    $n++;
+                }
+
+                $n = 0; $ct = 0;
+                while($c+$n < count($arr[0])){
+                    $curr == $arr[$r][$c+$n] ? $ct++ : $ct = 0;
+                    if($ct == $match){
+                        array_push($hor, [$r,$c]);
+                    }
+                    $n++;
+                }
+
+                $n = 0; $ct = 0;
+                while($c+$n < count($arr[0]) && $r+$n < count($arr)){
+                    $curr == $arr[$r+$n][$c+$n] ? $ct++ : $ct = 0;
+                    if($ct == $match){
+                        array_push($diagr, [$r,$c]);
+                    }
+                    $n++;
+                }
+
+                $n = 0; $ct = 0;
+                while($r+$n < count($arr) && $c-$n > -1){
+                    $curr == $arr[$r+$n][$c-$n] ? $ct++ : $ct = 0;
+                    if($ct == $match){
+                        array_push($diagl, [$r,$c]);
+                    }
+                    $n++;
+                }
+
+                // $n = 0; $ct = 0;
+                // while($c+$n < count($arr[0]) && $curr == $arr[$r][$c+$n]){
+                //     $ct++;
+                //     if($ct == $match){
+                //         array_push($hor, [$r,$c]);
+                //     }
+                //     $n++;
+                // }
+
+                // if($r+$match <= count($arr)){
+                //     $ct = 0;
+                //     $n = 0;
+                //     $curr = $arr[$r][$c];
+                //     while($n < count($arr)){
+                //         if($curr == $arr[$r+$n][$c]){
+                //             $ct++;
+                            
+                //         }
+                //         $n++;
+                //         // var_dump(expression)
+                //     }
+
+                //     var_dump($ct);
+                // }
+
+                // if($r+$match <= count($arr)){
+                //     $ct = 0;
+                //     $curr = $arr[$r][$c];
+                //     for($x = 0; $x < $match; $x++){
+                //         $tmp = $arr[$r+$x][$c];
+                //         $curr == $tmp ? $ct++ : $ct = 0;
+                //         if($ct == $match){
+                //             array_push($vert, [$r,$c]);
+                //         }
+                //     }
+                // }
+
+                // //check hor if within bounds
+                // if($c+$match <= count($arr[0])){
+                //     $ct = 0;
+                //     $curr = $arr[$r][$c];
+                //     for($x = 0; $x < $match; $x++){
+                //         $tmp = $arr[$r][$c+$x];
+                //         $curr == $tmp ? $ct++ : $ct = 0;
+                //         if($ct == $match){
+                //             array_push($hor, [$r,$c]);
+                //         }
+                //     }
+                // }
+
+                // //check right diag if within bounds
+                // if($r+$match <= count($arr) && $c+$match <= count($arr[0])){
+                //     $ct = 0;
+                //     $curr = $arr[$r][$c];
+                //     for($x = 0; $x < $match; $x++){
+                //         $tmp = $arr[$r+$x][$c+$x];
+                //         $curr == $tmp ? $ct++ : $ct = 0;
+                //         if($ct == $match){
+                //             array_push($diagr, [$r,$c]);
+                //         }
+                //     }
+                // }
+
+                // //check left diag
+                // if($r+$match <= count($arr) && $c-1 > -1){
+                //     $ct = 0;
+                //     $curr = $arr[$r][$c];
+                //     for($x = 0; $x < $match; $x++){
+                //         if($c-$x > -1){
+                //             $tmp = $arr[$r+$x][$c-$x];
+                //             $curr == $tmp ? $ct++ : $ct = 0;
+                //             if($ct == $match){
+                //                 array_push($diagl, [$r,$c]);
+                //             }
+                //         }   
+                //     }
+                // }
+            }
+        }
+        var_dump($vert);
+        var_dump($hor);
+        var_dump($diagr);
+        var_dump($diagl);
+    }
+
+
+    // $it = (count($arr[0])-count($arr)+1) + ((count($arr)-1)*2);
+
+    // function check($arr, $match){
+    //     $vert = [];
+    //     $hor = [];
+    //     $diagr = [];
+    //     $diagl = [];
+    //     for($r = 0; $r < count($arr); $r++){
+    //         for($c = 0; $c < count($arr[0]); $c++){
+    //             //check vert if within bounds
+    //             //
+    //             // var_dump($r+$match);
+    //             if($r+$match <= count($arr)){
+    //                 $ct = 0;
+    //                 $curr = $arr[$r][$c];
+    //                 // var_dump($curr);
+    //                 for($x = 0; $x < $match; $x++){
+    //                     //verty
+    //                     //if($r+$x < count($arr)){  // NOT SURE IF I NEED
+    //                         $tmp = $arr[$r+$x][$c];
+    //                         // var_dump($curr.'-'.$tmp);
+    //                         $curr == $tmp ? $ct++ : $ct = 0;
+
+    //                         if($ct == $match){
+    //                             array_push($vert, [$r,$c]);
+    //                         }
+    //                     // }
+    //                 }
+    //             }
+
+    //             //check hor if within bounds
+    //             if($c+$match <= count($arr[0])){
+    //                 $ct = 0;
+    //                 $curr = $arr[$r][$c];
+    //                 // var_dump($curr);
+    //                 for($x = 0; $x < $match; $x++){
+    //                     // if($c+$x < count($arr[0])){ // NOT SURE IF I NEED
+    //                         $tmp = $arr[$r][$c+$x];
+    //                         // var_dump($curr.'='.$tmp);
+    //                         $curr == $tmp ? $ct++ : $ct = 0;
+    //                         // var_dump($ct);
+    //                         if($ct == $match){
+    //                             array_push($hor, [$r,$c]);
+    //                         }
+    //                     // }
+    //                 }
+    //             }
+
+    //             //check right diag if within bounds
+    //             if($r+$match <= count($arr) && $c+$match <= count($arr[0])){
+    //                 $ct = 0;
+    //                 $curr = $arr[$r][$c];
+    //                 for($x = 0; $x < $match; $x++){
+    //                     $tmp = $arr[$r+$x][$c+$x];
+    //                     // var_dump($curr.'='.$tmp);
+    //                     $curr == $tmp ? $ct++ : $ct = 0;
+    //                     if($ct == $match){
+    //                         array_push($diagr, [$r,$c]);
+    //                     }
+    //                 }
+    //             }
+
+    //             //check left diag
+    //             // if($r+$match <= count($arr) && $c+$match <= count($arr[0])){
+    //             if($r+$match <= count($arr) && $c-1 > -1){
+    //                 $ct = 0;
+    //                 $curr = $arr[$r][$c];
+    //                 for($x = 0; $x < $match; $x++){
+    //                     if($c-$x > -1){
+    //                         $tmp = $arr[$r+$x][$c-$x];
+    //                         $curr == $tmp ? $ct++ : $ct = 0;
+    //                         if($ct == $match){
+    //                             array_push($diagl, [$r,$c]);
+    //                         }
+    //                     }   
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     var_dump($vert);
+    //     var_dump($hor);
+    //     var_dump($diagr);
+    //     var_dump($diagl);
+    // }
+
+
+    function checkDiag($arr, $match){
+        // $it = (count($arr[0])-count($arr)+1) + ((count($arr)-1)*2);
+        // $d = count($arr);
+        // //right diag
+        // for($r = 0; $r < $d; $r++){
+        //     $ct = 1;
+        //     for($c = 0; $c < $d; $c++){
+        //         $curr = $arr[$r][$c];
+        //         // var_dump($c);
+        //         for($i = 0; $i < $match; $i++){
+        //             // if($r+$i > $d-$r){
+        //             //     var_dump('test');
+        //             // }
+        //             // if($r+$i <= $d-$r && $c+$i < $d-$r){
+        //                 // var_dump($arr[$r+$i][$c+$i]);
+        //             // }
+        //         }   
+        //         // var_dump("expression");
+
+        //     }
+        // }
+
+        //         if($r+$match <= $match && $c+$match <= $match){
+        //             var_dump('test');
+        //         }
+
+        //         // var_dump($r+$match.$c+$match);
+        //         // if($r+$match-1 <= $match && $c+$match-1 <= $match){
+        //             // for($x = 0; $x <= $match; $x++){
+        //                 // var_dump($r+$x+1.$c+$x+1);
+        //                 // if($r+$x < $d && $c+$x < $d){
+        //                     // $curr = $arr[$r+$x][$c+$x];
+        //                     // $n = $arr[$r+$x+1][$c+$x+1];
+        //                     // $curr == $n ? $ct++ : $ct = 1;
+        //                     // var_dump($curr.$n);
+        //                     // if($ct == $match){
+        //                         // var_dump([$r+$x+1,$c+$x+1]);
+        //                     // }
+        //                 // }
+        //             // var_dump($ct);
+        //             // }
+
+        //         // var_dump($ct);
+
+        //         // }
+        //         // var_dump('e');
+        //     }
+        // }
+        // for($r = 0; $r < $d * 2; $r++){
+        //     $ct = 1;
+        //     for($c = 0; $c < $r; $c++){
+        //         $t = $r - $c;
+        //         if($t < $d && $c < $d){
+        //             if($t-1 > -1 && $c+1 < $d){
+        //                 $curr = $arr[$t][$c];
+        //                 $n = $arr[$t-1][$c+1];
+        //                 $curr == $n ? $ct++ : $ct = 1;
+        //             }
+        //         }
+        //         if($ct == $match){
+        //             var_dump($t.$c);
+        //         }
+        //     }
+        // }
+    }
+
+    function checkVert($arr, $match){
+        $dp = [];
+        for($i = 0; $i < count($arr[0]); $i++){ //row
+            $ct = 1;
+            for($j = 1; $j < count($arr); $j++){ //col
+                $p = $arr[$j-1][$i];
+                $c = $arr[$j][$i];
+                
+                $p == $c ? $ct++ : $ct = 1;
+
+                if($ct == $match){
+                    array_push($dp, [$i,$j]);
+                }
+            }
+        }
+        return $dp;
+
+    }
+
+    function checkHor($test, $match){
+        $datapoint = [];
+        for($i = 0; $i < count($test); $i++){ //row
+            $ct = 1;
+            for($j = 1; $j < count($test[0]); $j++){ //col
+                $prev = $test[$i][$j-1];
+                $curr = $test[$i][$j];
+
+                $prev == $curr ? $ct++ : $ct = 1;
+
+                if($ct == $match){
+                    array_push($datapoint, [$i,$j]);
+                }
+            }
+        }
+        return $datapoint;
+    }

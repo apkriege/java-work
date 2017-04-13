@@ -1,0 +1,72 @@
+Building Atm.java and running Atm
+Testing Account class ...
+ID: 1122
+Balance: $20,500.00 
+Monthly IR: 0.38 
+Date Created: Sat Mar 04 00:43:18 UTC 2017
+
+ID: 1123
+Balance: $1,520.00 
+Monthly IR: 0.38 
+Date Created: Sat Mar 04 00:43:18 UTC 2017
+
+Testing ATM ...
+Enter ID: 1
+
+Menu
+1: Check Balance
+2: Withdraw
+3: Deposit
+4: Exit
+Enter a choice: 1
+Balance: 100.0
+
+Menu
+1: Check Balance
+2: Withdraw
+3: Deposit
+4: Exit
+Enter a choice: 2
+Enter amount to withdraw: 30
+
+Menu
+1: Check Balance
+2: Withdraw
+3: Deposit
+4: Exit
+Enter a choice: 1
+Balance: 70.0
+
+Menu
+1: Check Balance
+2: Withdraw
+3: Deposit
+4: Exit
+Enter a choice: 3
+Enter amount to deposit: 50
+
+Menu
+1: Check Balance
+2: Withdraw
+3: Deposit
+4: Exit
+Enter a choice: 1
+Balance: 120.0
+
+Menu
+1: Check Balance
+2: Withdraw
+3: Deposit
+4: Exit
+Enter a choice: 4
+
+Testing extra accounts ...
+ID: 1123
+Balance: $20,000.00 
+Monthly IR: 0.46 
+Date Created: Sat Mar 04 01:11:13 UTC 2017
+
+ID: 1124
+Balance: $800.00 
+Monthly IR: 0.42 
+Date Created: Sat Mar 04 01:11:13 UTC 2017

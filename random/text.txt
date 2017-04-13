@@ -1,0 +1,67 @@
+ function check($arr, $match){
+        $vert = [];
+        $hor = [];
+        $diagr = [];
+        $diagl = [];
+        for($r = 0; $r < count($arr); $r++){
+            for($c = 0; $c < count($arr[0]); $c++){
+                //check if vert within bounds
+                if($r+$match <= count($arr)){
+                    $ct = 0;
+                    $curr = $arr[$r][$c];
+                    for($x = 0; $x < $match; $x++){
+                        $tmp = $arr[$r+$x][$c];
+                        $curr == $tmp ? $ct++ : $ct = 0;
+                        if($ct == $match){
+                            array_push($vert, [$r,$c]);
+                        }
+                    }
+                }
+
+                //check hor if within bounds
+                if($c+$match <= count($arr[0])){
+                    $ct = 0;
+                    $curr = $arr[$r][$c];
+                    for($x = 0; $x < $match; $x++){
+                        $tmp = $arr[$r][$c+$x];
+                        $curr == $tmp ? $ct++ : $ct = 0;
+                        if($ct == $match){
+                            array_push($hor, [$r,$c]);
+                        }
+                    }
+                }
+
+                //check right diag if within bounds
+                if($r+$match <= count($arr) && $c+$match <= count($arr[0])){
+                    $ct = 0;
+                    $curr = $arr[$r][$c];
+                    for($x = 0; $x < $match; $x++){
+                        $tmp = $arr[$r+$x][$c+$x];
+                        $curr == $tmp ? $ct++ : $ct = 0;
+                        if($ct == $match){
+                            array_push($diagr, [$r,$c]);
+                        }
+                    }
+                }
+
+                //check left diag
+                if($r+$match <= count($arr) && $c-1 > -1){
+                    $ct = 0;
+                    $curr = $arr[$r][$c];
+                    for($x = 0; $x < $match; $x++){
+                        if($c-$x > -1){
+                            $tmp = $arr[$r+$x][$c-$x];
+                            $curr == $tmp ? $ct++ : $ct = 0;
+                            if($ct == $match){
+                                array_push($diagl, [$r,$c]);
+                            }
+                        }   
+                    }
+                }
+            }
+        }
+        var_dump($vert);
+        var_dump($hor);
+        var_dump($diagr);
+        var_dump($diagl);
+    }

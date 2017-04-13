@@ -1,0 +1,22 @@
+Building Test.java and running Test
+Unsorted list of geometric objects: 
+3.14
+12.57
+28.27
+4.00
+12.00
+36.00
+2.83
+2.90
+9.92
+
+Sorted list of geometric objects: 
+2.83
+2.90
+3.14
+4.00
+9.92
+12.00
+12.57
+28.27
+36.00

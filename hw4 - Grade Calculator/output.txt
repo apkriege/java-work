@@ -1,0 +1,13 @@
+Running /home/ubuntu/workspace/hw4/hw4-Krieger.cpp
+Student Name  Student ID      Eng101     Hist201 
+------------  ----------      ------     ------- 
+         Jon           1       70(C)       85(B)
+        Jane           2       85(B)       68(D)
+         Bob           3       77(C)       75(C)
+        Lisa           4       60(D)       81(B)
+         Ben           5       99(A)       88(B)
+        Jean        6666       90(A)       95(A)
+
+          Class Average:       80(B)       82(B)
+          
+Process exited with code: 0
